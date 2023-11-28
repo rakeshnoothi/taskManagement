@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .icon-dimenstions {
+        width: 1.5rem;
+        aspect-ratio: 1/1;
+    }
+}
+
+@layer components {
+    .hover-styles {
+        @apply hover:cursor-pointer hover:bg-blue-300;
+    }
+}
+
+.active {
+    background-color: #bdc9ef;
+}
