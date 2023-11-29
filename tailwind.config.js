@@ -11,6 +11,17 @@ export default {
                 //text
                 900: "#2C4CB5",
             },
+            white: "#ffff",
+            black: "black",
+            red: "#D33F49",
+            green: {
+                100: "#3CAC0C",
+                500: " #246a07",
+            },
+            silver: {
+                100: "#F4F4F6",
+                500: "#BCBCC8",
+            },
         },
         extend: {
             animation: {

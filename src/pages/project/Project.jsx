@@ -1,4 +1,4 @@
 const Project = () => {
-    return <div>Project</div>;
+    return <div className="grow"></div>;
 };
 export default Project;

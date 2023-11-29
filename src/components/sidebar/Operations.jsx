@@ -6,6 +6,9 @@ import { ViewfinderCircleIcon } from "@heroicons/react/24/outline";
 import { InboxIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
+// hook imports.
+import useAddComponent from "../../hooks/useAddComponent";
+
 const OperationButton = ({ redirectPage, displayName, icon }) => {
     return (
         <NavLink
@@ -19,9 +22,13 @@ const OperationButton = ({ redirectPage, displayName, icon }) => {
 };
 
 const Operations = () => {
+    const { setRender } = useAddComponent();
     return (
         <section className="text-blue-900 flex flex-col gap-2">
-            <div className="p-2 rounded-md flex gap-2 hover-styles">
+            <div
+                className="p-2 rounded-md flex gap-2 hover-styles"
+                onClick={() => setRender("task")}
+            >
                 <PlusCircleIcon className="icon-dimenstions" />
                 <span>Add Task</span>
             </div>

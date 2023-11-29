@@ -1,4 +1,4 @@
 const Overview = () => {
-    return <div>Overview</div>;
+    return <div className="grow"></div>;
 };
 export default Overview;
