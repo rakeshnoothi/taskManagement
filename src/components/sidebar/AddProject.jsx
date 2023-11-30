@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import useProjectInfo from "../../hooks/useProjectInfo";
 import useAddComponent from "../../hooks/useAddComponent";
+import localStoragefunc from "../../utils/localStorage";
 
 const AddProject = () => {
     const { render, setRender } = useAddComponent();
@@ -8,13 +9,15 @@ const AddProject = () => {
     const ref = useRef();
 
     const handleAddProject = () => {
-        setProjects([
+        const newProjects = [
             ...projects,
             {
+                id: crypto.randomUUID(),
                 name: ref.current.value,
-                totalTasks: "0",
             },
-        ]);
+        ];
+        setProjects(newProjects);
+        localStoragefunc.setItem("projects", newProjects);
         ref.current.value = "";
         setRender(false);
     };

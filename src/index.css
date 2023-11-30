@@ -13,6 +13,9 @@
     .hover-styles {
         @apply hover:cursor-pointer hover:bg-blue-300;
     }
+    .overview-styles {
+        @apply p-4 border flex flex-col items-center gap-2 rounded-xl hover:drop-shadow-xl hover:bg-blue-300 hover:cursor-pointer hover:scale-110;
+    }
 }
 
 .active {

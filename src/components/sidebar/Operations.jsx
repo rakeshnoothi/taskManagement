@@ -3,7 +3,6 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 
 //outline icon imports.
 import { ViewfinderCircleIcon } from "@heroicons/react/24/outline";
-import { InboxIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
 // hook imports.
@@ -36,11 +35,6 @@ const Operations = () => {
                 redirectPage="/"
                 displayName="Overview"
                 icon={<ViewfinderCircleIcon className="icon-dimenstions" />}
-            />
-            <OperationButton
-                redirectPage="/inbox"
-                displayName="Inbox"
-                icon={<InboxIcon className="icon-dimenstions" />}
             />
         </section>
     );

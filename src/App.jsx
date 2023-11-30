@@ -8,7 +8,6 @@ import AddProject from "./components/sidebar/AddProject.jsx";
 
 // page imports.
 import Overview from "./pages/overview/Overview.jsx";
-import Inbox from "./pages/inbox/Inbox.jsx";
 import Project from "./pages/project/Project.jsx";
 
 // context imports.
@@ -37,11 +36,7 @@ const router = createBrowserRouter([
                 element: <Overview />,
             },
             {
-                path: "/inbox",
-                element: <Inbox />,
-            },
-            {
-                path: "/project/:name",
+                path: "/project/:id",
                 element: <Project />,
             },
         ],

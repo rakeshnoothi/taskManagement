@@ -4,7 +4,7 @@ import Projects from "./Projects";
 
 const Sidebar = () => {
     return (
-        <aside className="bg-blue-100 h-full w-80 p-2 flex flex-col gap-4">
+        <aside className="bg-blue-100 h-full w-80 min-w-[20rem] p-2 flex flex-col gap-4">
             <Profile />
             <Operations />
             <Projects />

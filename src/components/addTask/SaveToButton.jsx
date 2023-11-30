@@ -1,11 +1,10 @@
 import { useState } from "react";
 import useProjectInfo from "../../hooks/useProjectInfo";
 
-const SaveToButton = ({ indicationRef }) => {
+const SaveToButton = ({ taskInfo }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [displayName, setDisplayName] = useState("Inbox");
+    const [displayName, setDisplayName] = useState("Save To");
     const { projects } = useProjectInfo();
-    console.log(projects);
     return (
         <button
             className="relative px-4 py-2 border border-silver-500 rounded-md hover:bg-silver-100"
@@ -17,12 +16,12 @@ const SaveToButton = ({ indicationRef }) => {
                     {projects.map(project => {
                         return (
                             <li
-                                key={project.name}
+                                key={project.id}
                                 className="hover:bg-silver-100 px-4"
                                 onClick={() => {
                                     setDisplayName(project.name);
-                                    indicationRef.current.projectName =
-                                        project.name;
+                                    taskInfo.current.projectName = displayName;
+                                    taskInfo.current.projectId = project.id;
                                 }}
                             >
                                 {project.name}

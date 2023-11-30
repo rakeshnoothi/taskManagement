@@ -7,32 +7,49 @@ import SaveToButton from "./SaveToButton";
 //hook imports.
 import useAddComponent from "../../hooks/useAddComponent";
 import useTaskInfo from "../../hooks/useTaskInfo";
+import localStoragefunc from "../../utils/localStorage";
 
+const taskInfoInitialValue = {
+    status: null,
+    priority: null,
+    projectName: null,
+};
 const AddTask = () => {
-    const ref = useRef();
     const { render, setRender } = useAddComponent();
     const { tasks, setTasks } = useTaskInfo();
-    const taskInfo = useRef({
-        status: null,
-        priority: null,
-        projectName: null,
-    });
+    const taskInfo = useRef(taskInfoInitialValue);
+    const form = useRef();
 
-    console.log("Indication ref", taskInfo);
-    console.log("tasks", tasks);
+    const addTask = () => {
+        // check inputs are not empty before adding task.
+        if (
+            !form.current.children[0].value &&
+            !form.current.children[1].value
+        ) {
+            alert("You planned do nothing!. Please add a task!");
+            return;
+        }
+        if (taskInfo.current.projectName === null) {
+            alert("Please create a Project or Please select a Project");
+            return;
+        }
 
-    const handleAddTask = () => {
-        setTasks([
+        const newTasks = [
             ...tasks,
             {
-                name: ref.current.value,
-                description: "",
+                id: crypto.randomUUID(),
+                name: form.current.children[0].value,
+                description: form.current.children[1].value,
                 status: taskInfo.current.status,
                 priority: taskInfo.current.priority,
-                projectName: taskInfo.current.projectName,
+                projectId: taskInfo.current.projectId,
             },
-        ]);
+        ];
+
+        setTasks(newTasks);
+        localStoragefunc.setItem("tasks", newTasks);
         setRender(null);
+        form.current.reset();
     };
 
     return (
@@ -48,14 +65,14 @@ const AddTask = () => {
                 }`}
             >
                 <section className="pb-4 space-y-2">
-                    <div className="flex flex-col">
+                    <form className="flex flex-col" ref={form}>
                         <input
                             type="text"
                             placeholder="Task Name"
                             className=" p-2 outline-none text-2xl"
-                            ref={ref}
                         />
-                    </div>
+                        <textarea className="p-2 outline-none border border-silver-500"></textarea>
+                    </form>
                     <IndicationButtonsSection taskInfo={taskInfo} />
                 </section>
                 <section className="pt-4 border-t-2  border-silver-500 flex justify-between">
@@ -69,7 +86,7 @@ const AddTask = () => {
                         </button>
                         <button
                             className="px-4 py-2 bg-green-100 text-white rounded-md hover:bg-green-500"
-                            onClick={() => handleAddTask()}
+                            onClick={() => addTask()}
                         >
                             Add Task
                         </button>

@@ -6,12 +6,22 @@ const IndicationButton = ({ displayName, dropDownValues, taskInfo }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [newDisplayName, setNewDisplayName] = useState(null);
 
-    const handleDisplayName = value => {
+    const handleUpdateDropDown = value => {
         setNewDisplayName(value);
         if (displayName === "Priority") {
             taskInfo.current.priority = value;
         } else if (displayName === "Status") {
             taskInfo.current.status = value;
+        }
+    };
+
+    const handleDeleteDropdown = e => {
+        e.stopPropagation();
+        setNewDisplayName(null);
+        if (displayName === "Priority") {
+            taskInfo.current.priority = null;
+        } else if (displayName === "Status") {
+            taskInfo.current.status = null;
         }
     };
 
@@ -29,12 +39,7 @@ const IndicationButton = ({ displayName, dropDownValues, taskInfo }) => {
                     <span>{newDisplayName}</span>
                     <XMarkIcon
                         className="w-4 h-4 hover:text-red"
-                        onClick={e => {
-                            e.stopPropagation();
-                            setNewDisplayName(null);
-                            taskInfo.current.priority = null;
-                            taskInfo.current.status = null;
-                        }}
+                        onClick={e => handleDeleteDropdown(e)}
                     />
                 </div>
             )}
@@ -47,7 +52,7 @@ const IndicationButton = ({ displayName, dropDownValues, taskInfo }) => {
                                 key={value}
                                 className="hover:bg-silver-100 px-4"
                                 onClick={() => {
-                                    handleDisplayName(value);
+                                    handleUpdateDropDown(value);
                                 }}
                             >
                                 {value}
